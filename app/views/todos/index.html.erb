@@ -1,0 +1,20 @@
+<h1>Indexing all todos</h1>
+
+<p><%= link_to "Create a todo", new_todo_path %></p>
+
+<table>
+  <tr>                <!-- <tr> tag defines a table row -->
+    <th>Name</th>     <!-- <th> tag is a table header -->
+    <th>Description</th>
+  </tr>
+  
+  <% @todos.each do |todo| %>
+    <tr>
+      <td><%= todo.name %></td>     <!-- <td> tag is table data -->
+      <td><%= todo.description %></td>
+      <td><%= link_to "Edit", edit_todo_path(todo) %></td>
+      <td><%= link_to "Show", todo_path(todo) %></td>
+    </tr>
+  <% end %>
+  
+</table>
