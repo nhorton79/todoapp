@@ -1,0 +1,8 @@
+<!-- This code allows a flash notice to be added to the body of EVERY page
+     It is 'called' using the  render 'layouts/messages'  line in the application.html.erb file  -->
+
+<% flash.each do |name, msg| %> 
+  <ul>
+    <li> <%= msg %> </li>
+  </ul>
+<% end %> <!-- Flash notice code ends here -->

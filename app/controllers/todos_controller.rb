@@ -1,5 +1,10 @@
 class TodosController < ApplicationController
   
+# this part of code allows us to run a specific method 'set_todo' before 
+# it runs the edit, update, show and destroy methods
+  before_action :set_todo, only: [:edit, :update, :show, :destroy]
+  
+  
   def new
     @todo = Todo.new
   end
@@ -17,12 +22,10 @@ class TodosController < ApplicationController
   
   
   def show
-    @todo = Todo.find(params[:id])
   end  
   
   
   def edit
-    @todo = Todo.find(params[:id])
   end  
   
   
@@ -32,7 +35,6 @@ class TodosController < ApplicationController
   
   
   def update
-    @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       flash[:notice] = "Todo was successfully updated"
       redirect_to todo_path(@todo)
@@ -42,7 +44,6 @@ class TodosController < ApplicationController
   end  
   
   def destroy
-    @todo = Todo.find(params[:id])
     @todo.destroy
     flash[:notice] = "Todo deleted successfully"
     redirect_to todos_path
@@ -50,6 +51,10 @@ class TodosController < ApplicationController
   
   
   private # anything under here is only available to this particular controller
+  
+    def set_todo
+      @todo = Todo.find(params[:id])
+    end
   
     def todo_params
       params.require(:todo).permit(:name, :description)

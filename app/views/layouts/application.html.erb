@@ -9,13 +9,7 @@
   </head>
 
   <body>
-    <!-- This code allows a flash notice to be added to the body of EVERY page -->
-    <% flash.each do |name, msg| %> 
-      <ul>
-        <li> <%= msg %> </li>
-      </ul>
-    <% end %> <!-- Flash notice code ends here -->
-    
+    <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
 </html>
